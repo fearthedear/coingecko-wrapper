@@ -29,7 +29,7 @@ def markets():
     if None in [vs_currency, ids]:
         abort(Response("Invalid request: Params missing", status=400))
 
-    response = coingecko.get_coins_markets(vs_currency=currency, order='market_cap_desc', sparkline=False)
+    response = coingecko.get_coins_markets(vs_currency=vs_currency, ids=ids)
     return json.dumps(response)
 
 
@@ -51,5 +51,7 @@ def history(ticker):
 
 
 # Run app
-app.run(host="0.0.0.0", port=os.environ["PORT"])
-
+try:
+    app.run(host="0.0.0.0", port=os.environ["PORT"])
+except:
+    app.run(host="0.0.0.0", port=3000)
