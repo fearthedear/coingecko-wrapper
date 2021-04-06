@@ -33,6 +33,15 @@ def markets():
     return json.dumps(response)
 
 
+@app.route('/api/v3/simple/price')
+def simple():
+    ids = request.args.get('ids')
+    vs_currencies = request.args.get('vs_currencies')
+
+    response = coingecko.get_price(vs_currencies=vs_currencies, ids=ids)
+    return json.dumps(response)
+
+
 @app.route('/coins/<ticker>')
 def coins(ticker):
     response = coingecko.get_coin_by_id(id=ticker)
