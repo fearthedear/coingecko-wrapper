@@ -21,14 +21,15 @@ def favicon():
 
 @app.route('/markets')
 def markets():
-    currency = request.args.get('currency')
+    currency = request.args.get('vs_currency')
+    ids = request.args.get('ids')
     limit = request.args.get('limit')
     page = request.args.get('page')
 
-    if None in [currency, limit, page]:
+    if None in [vs_currency, ids]:
         abort(Response("Invalid request: Params missing", status=400))
 
-    response = coingecko.get_coins_markets(vs_currency=currency, order='market_cap_desc', per_page=limit, page=page, sparkline=False)
+    response = coingecko.get_coins_markets(vs_currency=currency, order='market_cap_desc', sparkline=False)
     return json.dumps(response)
 
 
