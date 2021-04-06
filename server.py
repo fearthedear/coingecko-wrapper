@@ -21,7 +21,7 @@ def favicon():
 
 @app.route('/markets')
 def markets():
-    currency = request.args.get('vs_currency')
+    vs_currency = request.args.get('vs_currency')
     ids = request.args.get('ids')
     limit = request.args.get('limit')
     page = request.args.get('page')
